@@ -210,6 +210,7 @@ UnicodeString::UnicodeString(UChar32 ch)
 {
   int32_t i = 0;
   UBool isError = FALSE;
+  (void)isError;
   U16_APPEND(fUnion.fStackBuffer, i, US_STACKBUF_SIZE, ch, isError);
   // We test isError so that the compiler does not complain that we don't.
   // If isError then i==0 which is what we want anyway.
@@ -1254,6 +1255,7 @@ UnicodeString::replace(int32_t start,
   UChar buffer[U16_MAX_LENGTH];
   int32_t count = 0;
   UBool isError = FALSE;
+  (void)isError;
   U16_APPEND(buffer, count, U16_MAX_LENGTH, srcChar, isError);
   // We test isError so that the compiler does not complain that we don't.
   // If isError (srcChar is not a valid code point) then count==0 which means
@@ -1266,6 +1268,7 @@ UnicodeString::append(UChar32 srcChar) {
   UChar buffer[U16_MAX_LENGTH];
   int32_t _length = 0;
   UBool isError = FALSE;
+  (void)isError;
   U16_APPEND(buffer, _length, U16_MAX_LENGTH, srcChar, isError);
   // We test isError so that the compiler does not complain that we don't.
   // If isError then _length==0 which turns the doReplace() into a no-op anyway.
@@ -1719,6 +1722,7 @@ UnicodeStringAppendable::appendCodePoint(UChar32 c) {
   UChar buffer[U16_MAX_LENGTH];
   int32_t cLength = 0;
   UBool isError = FALSE;
+  (void)isError;
   U16_APPEND(buffer, cLength, U16_MAX_LENGTH, c, isError);
   return !isError && str.doReplace(str.length(), 0, buffer, 0, cLength).isWritable();
 }
